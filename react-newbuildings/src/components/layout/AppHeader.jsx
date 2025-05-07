@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext,useLayoutEffect } from 'react';
 import { useBuildings } from '../../context/buildings-context';
 import { Layout, Select, Space, Modal, Form, Input, Checkbox  } from 'antd';
 import { EnvironmentOutlined}  from '@ant-design/icons';
@@ -25,6 +25,7 @@ export default function AppHeader() {
   const [selectModal, setSelectModal] = useState(false)
   const [building , setBuilding] = useState(null)
   const {buildings} = useBuildings()
+  const [color, setColor] = useState('green');
 
   useEffect(() => {
     const keypress = (event) => {
@@ -36,11 +37,17 @@ export default function AppHeader() {
     return () => document.removeEventListener('keypress', keypress)
   }, [])
 
+  useEffect(() => {
+		document.body.style.backgroundColor = color;
+	}, [color]);
+
+
 
     function handleSelect(value) {
       console.log(value)
       setBuilding(buildings.find((building) => building.id === value))
       setSelectModal(true)
+      setColor('orange');
     }
   
     return (

@@ -4,6 +4,7 @@ import AppFooter from './AppFooter'
 import MapYandex from '../configmap/MapYandex'
 import { useContext } from 'react'
 import BuildingsContext from '../../context/buildings-context'
+import AppContent from './AppContent'
 
 const contentStyle = {
     textAlign: 'center',
@@ -24,7 +25,8 @@ export default function AppLayout() {
             <AppHeader />
             <MapYandex />
             <Layout>
-                <Layout.Content style={contentStyle}>Content Калькулятор покупки недвижимости</Layout.Content>
+                <AppContent />
+                
             </Layout>
             <AppFooter />
         </Layout>

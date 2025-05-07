@@ -11,6 +11,9 @@ export default function BuildingInfo({ building }) {
       <Typography.Title level={2} style={{ margin: 0 }}>
         {building.name}
       </Typography.Title>
+      <Typography.Paragraph>
+      {building.price}
+      </Typography.Paragraph>
     </Flex>
   )
 }
