@@ -51,7 +51,7 @@ return (
             <p>Стоимость недвижимости</p>
             <p>{squareMeter * pricePerSquareMeter} р</p>
             Цель будет достигнута за
-            <p>{yearsToBuy} лет</p>
+            <p>{yearsToBuy} {yearsToBuy < 5 ? 'года' : 'лет'}</p>
         </Card>
         
     </Layout.Content>   
