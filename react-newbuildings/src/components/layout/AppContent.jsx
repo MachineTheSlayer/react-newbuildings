@@ -32,16 +32,26 @@ export default function AppContent() {
     }
   };
 
-    /* function yearRas(moneyNow,moneyPerMonth,squareMeter) {
-        if (moneyNow+moneyPerMonth*12 < squareMeter * 165000) {
-            return <p>Hello</p>
-        }
-    } */
-    
+  const getAgeString = (yearsToBuy) => {
+    let count = yearsToBuy % 100
+    if (count >= 10 && count<= 20) {
+      return "лет"
+    } else {
+      count =  yearsToBuy % 10
+      if (count === 1) {
+        return "год"
+      } else if (count >= 2 && count <= 4) {
+        return "года"
+      } else {
+        return "лет"
+      }
+    }
+  }
+
 return (
     <Layout.Content style={contentStyle}>
-        Content Калькулятор покупки недвижимости
-        <Card style={{ width: 300, margin: 'auto',marginBottom:'1rem' }}>
+        Калькулятор покупки недвижимости
+        <Card style={{ width: 300, margin: 'auto',marginBottom:'1rem',marginTop:'1rem' }}>
             <Input style={{marginBottom:'10px'}} value={squareMeter} onChange={event => setSquareMeter(event.target.value) } placeholder="Квадратные метры" />
             <Input style={{marginBottom:'10px'}} value={moneyNow} onChange={event => setMoneyNow(event.target.value) } placeholder="Есть сейчас денег" />
             <Input  value={moneyPerMonth} onChange={event => setMoneyPerMonth(event.target.value) } placeholder="Готов откладывать в месяц" />
@@ -51,7 +61,7 @@ return (
             <p>Стоимость недвижимости</p>
             <p>{squareMeter * pricePerSquareMeter} р</p>
             Цель будет достигнута за
-            <p>{yearsToBuy} {yearsToBuy < 5 ? 'года' : 'лет'}</p>
+            <p>{yearsToBuy} {yearsToBuy >= 10 && yearsToBuy<=20 ? "лет" : yearsToBuy === 1 ? "год" : yearsToBuy >= 2 && yearsToBuy<= 4 ? "года" : "лет"}</p>
         </Card>
         
     </Layout.Content>   

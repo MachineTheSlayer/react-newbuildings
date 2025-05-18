@@ -83,9 +83,6 @@ export default function AppHeader() {
         footer={null}
    >     
    <BuildingInfoModal building={building} />
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
         <YMaps style={{color: '#fff'}} query={{apikey: "bea5b1a7-e372-46d8-93b9-f03cb619c920"}}>
             <Map defaultState={{ center: [55.751574, 37.573856], zoom: 9 }}>
               <Placemark defaultGeometry={[55.751574, 37.573856]} />

@@ -6,7 +6,10 @@ export default function BuildingIInfoModal({ building }) {
   return (
     <>
       <BuildingInfo building={building} withSymbol />
-      
+      <Divider />
+       <Typography.Paragraph>
+        {building.price} руб за 1кв. метр
+        </Typography.Paragraph>
     </>
   )
 }
