@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Layout, Input, Card, Button } from 'antd';
-import { FinishYear } from '../../utils';
+import {ShowTrueYear} from '../../utils';
 
 const contentStyle = {
     //margin: 'auto',
@@ -15,7 +15,7 @@ export default function AppContent() {
     const [squareMeter, setSquareMeter] = useState('');
     const [moneyNow, setMoneyNow] = useState('');
     const [moneyPerMonth, setMoneyPerMonth] = useState('');
-    const [yearsToBuy, setYearsToBuy] = useState(0)
+    const [yearsToBuy, setYearsToBuy] = useState(null)
 
     // Предположим, что цена за квадратный метр фиксирована
   const pricePerSquareMeter = 115000; // например, 115000 рублей за квадратный метр
@@ -61,7 +61,14 @@ return (
             <p>Стоимость недвижимости</p>
             <p>{squareMeter * pricePerSquareMeter} р</p>
             Цель будет достигнута за
-            <p>{yearsToBuy} {yearsToBuy >= 10 && yearsToBuy<=20 ? "лет" : yearsToBuy === 1 ? "год" : yearsToBuy >= 2 && yearsToBuy<= 4 ? "года" : "лет"}</p>
+            <p>{yearsToBuy} {yearsToBuy >= 10 && yearsToBuy<=20 ? "лет" : yearsToBuy === 1 ? "год" : yearsToBuy >= 2 && yearsToBuy<= 4 ? "года" : "лет"} </p>
+            {yearsToBuy !== null && (
+        <div>
+          {yearsToBuy === 0
+            ? 'Вы уже можете купить квартиру!'
+            : `Вам потребуется ${yearsToBuy} ${yearsToBuy >= 10 && yearsToBuy<=20 ? "лет" : yearsToBuy === 1 ? "год" : yearsToBuy >= 2 && yearsToBuy<= 4 ? "года" : "лет"} для покупки квартиры.`}
+        </div>
+      )}
         </Card>
         
     </Layout.Content>   
