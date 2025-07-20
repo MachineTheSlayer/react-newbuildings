@@ -17,14 +17,14 @@ export default function AppLayout() {
     const { loading } = useContext(BuildingsContext)
   
     if (loading) {
-      return <Spin fullscreen />
+      return <Spin fullscreen  />
     }
   
     return (
         <Layout>
             <AppHeader />
-            <MapYandex />
             <Layout>
+                <MapYandex />
                 <AppContent />
                 
             </Layout>

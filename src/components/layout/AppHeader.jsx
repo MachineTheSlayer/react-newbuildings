@@ -1,6 +1,7 @@
 import React, { useContext,useLayoutEffect } from 'react';
 import { useBuildings } from '../../context/buildings-context';
 import { Layout, Select, Space, Modal, Form, Input, Checkbox  } from 'antd';
+import MapYandex from '../configmap/MapYandex';
 import { EnvironmentOutlined}  from '@ant-design/icons';
 import{ Button } from "antd";
 import { useEffect, useState } from 'react';
@@ -22,11 +23,11 @@ const headerStyle = {
 export default function AppHeader() {
   const [select, setSelect] = useState(false)
   const [modal, setModal] = useState(false)
+  const [map, setMap] = useState(false)
   const [selectModal, setSelectModal] = useState(false)
   const [building , setBuilding] = useState(null)
   const {buildings} = useBuildings()
-  const [color, setColor] = useState('green');
-
+  
   useEffect(() => {
     const keypress = (event) => {
       if (event.key === '/') {
@@ -37,17 +38,10 @@ export default function AppHeader() {
     return () => document.removeEventListener('keypress', keypress)
   }, [])
 
-  useEffect(() => {
-		document.body.style.backgroundColor = color;
-	}, [color]);
-
-
-
-    function handleSelect(value) {
+  function handleSelect(value) {
       console.log(value)
       setBuilding(buildings.find((building) => building.id === value))
       setSelectModal(true)
-      setColor('orange');
     }
   
     return (
@@ -74,6 +68,12 @@ export default function AppHeader() {
       </Space>
     )}
   />
+
+      <Button style={{marginLeft: '20px'}} onClick={() => setMap((prev) => !prev)}>
+        Map 
+      </Button>
+
+  
   
       <Button style={{marginLeft: 'auto'}} onClick={() => setSelectModal()}>
         <EnvironmentOutlined />
