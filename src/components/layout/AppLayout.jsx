@@ -1,7 +1,6 @@
 import { Layout, Spin } from 'antd'
 import AppHeader from './AppHeader'
 import AppFooter from './AppFooter'
-import MapYandex from '../configmap/MapYandex'
 import { useContext } from 'react'
 import BuildingsContext from '../../context/buildings-context'
 import AppContent from './AppContent'
@@ -24,7 +23,7 @@ export default function AppLayout() {
         <Layout>
             <AppHeader />
             <Layout>
-                <MapYandex />
+          
                 <AppContent />
                 
             </Layout>

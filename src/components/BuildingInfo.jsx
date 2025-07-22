@@ -1,6 +1,6 @@
 import { Flex, Typography } from 'antd'
 
-export default function BuildingInfo({ building }) {
+export default function BuildingInfo({ building}) {
   return (
     <Flex align="center">
       <img

@@ -23,7 +23,7 @@ const headerStyle = {
 export default function AppHeader() {
   const [select, setSelect] = useState(false)
   const [modal, setModal] = useState(false)
-  const [map, setMap] = useState(false)
+  const [modalMap, setModalMap] = useState(false)
   const [selectModal, setSelectModal] = useState(false)
   const [building , setBuilding] = useState(null)
   const {buildings} = useBuildings()
@@ -43,8 +43,9 @@ export default function AppHeader() {
       setBuilding(buildings.find((building) => building.id === value))
       setSelectModal(true)
     }
-  
+
     return (
+      <>
     <Layout.Header style={headerStyle}>
       <Select
     style={{
@@ -60,7 +61,7 @@ export default function AppHeader() {
           icon: buildings.icon,
     }))}
     optionRender={(option) => (
-      <Space>
+      <Space> 
         <img
           style={{ width: 60 }}
           src={option.data.icon}
@@ -68,25 +69,23 @@ export default function AppHeader() {
       </Space>
     )}
   />
-
-      <Button style={{marginLeft: '20px'}} onClick={() => setMap((prev) => !prev)}>
+  
+      <Button style={{marginLeft: 'auto'}} onClick={() => setModalMap(true)}>
+        <EnvironmentOutlined />
         Map 
       </Button>
+      <Modal
+          closable={{ 'aria-label': 'Custom Close Button' }}
+          open={modalMap}
+          onOk={() => setModalMap(false)}
+          onCancel={() => setModalMap(false)} 
+          footer={null}
+        >     
+          <MapYandex />
+         
+        </Modal>
 
-  
-  
-      <Button style={{marginLeft: 'auto'}} onClick={() => setSelectModal()}>
-        <EnvironmentOutlined />
-        <Modal
-        open={selectModal} 
-        onCancel={() => setSelectModal(false)}
-        footer={null}
-   >     
-   <BuildingInfoModal building={building} />
-        
-      </Modal>
-        
-      </Button>
+   
       <Button style={{marginLeft: '20px'}} onClick={() => setModal((prev) => !prev)}>
         
         Login
@@ -153,5 +152,6 @@ export default function AppHeader() {
       </Modal>
       
     </Layout.Header>
+    </>
   )
 }

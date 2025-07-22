@@ -5,15 +5,15 @@ import config from './config.json';
 
 export default function MapYandex() {
   const defaultState = {
-      center: [55.751574, 37.573856],
+      center: [53, 50],
       zoom: 5,
     };
 
 return (
   <YMaps query={{apikey: config.YANDEX_API_KEY}}>
     <div>
-      My awesome application with maps!
-      <Map defaultState={{ center: [55.75, 37.57], zoom: 9 }} style={{height:200}} />
+      <h2>Карта новостроек</h2>
+      <Map defaultState={{ center: [53.22, 50.16], zoom: 13 }} style={{height:400}} />
     </div>
   </YMaps>
   ); 

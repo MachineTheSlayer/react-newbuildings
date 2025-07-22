@@ -50,7 +50,7 @@ export default function AppContent() {
 
 return (
     <Layout.Content style={contentStyle}>
-        Калькулятор покупки недвижимости
+        <h2>Калькулятор покупки недвижимости</h2>
         <Card style={{ width: 300, margin: 'auto',marginBottom:'1rem',marginTop:'1rem' }}>
             <Input style={{marginBottom:'10px'}} value={squareMeter} onChange={event => setSquareMeter(event.target.value) } placeholder="Квадратные метры" />
             <Input style={{marginBottom:'10px'}} value={moneyNow} onChange={event => setMoneyNow(event.target.value) } placeholder="Есть сейчас денег" />
