@@ -49,7 +49,7 @@ export default function AppHeader() {
     <Layout.Header style={headerStyle}>
       <Select
     style={{
-      width: 250,
+      width: 250
     }}
     open={select}
     onChange={handleSelect}
@@ -69,6 +69,10 @@ export default function AppHeader() {
       </Space>
     )}
   />
+
+  <Button style={{marginLeft: '20px'}}>
+    Новостройки
+  </Button>
   
       <Button style={{marginLeft: 'auto'}} onClick={() => setModalMap(true)}>
         <EnvironmentOutlined />

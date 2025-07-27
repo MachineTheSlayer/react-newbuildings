@@ -18,7 +18,14 @@ export default function AppContent() {
     const [yearsToBuy, setYearsToBuy] = useState(null)
 
     // Предположим, что цена за квадратный метр фиксирована
-  const pricePerSquareMeter = 115000; // например, 115000 рублей за квадратный метр
+    // Если площадь<40 то price = ...<50...
+  let pricePerSquareMeter = 115000; // например, 115000 рублей за квадратный метр
+
+  if (squareMeter<40) {
+    pricePerSquareMeter = 185000;
+  } else if (squareMeter>40 && squareMeter<65) {
+    pricePerSquareMeter = 146000;
+  } else pricePerSquareMeter = 135000;
 
   const calculateYearsToBuy = () => {
     const totalPrice = squareMeter * pricePerSquareMeter;
