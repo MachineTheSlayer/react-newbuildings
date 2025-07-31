@@ -6,6 +6,7 @@ import { EnvironmentOutlined}  from '@ant-design/icons';
 import{ Button } from "antd";
 import { useEffect, useState } from 'react';
 import BuildingInfoModal from '../BuildingInfoModal'
+import NewBuildingPage from "../../containers/NewBuildingPage/NewBuildingPage";
 
 
 const headerStyle = {
@@ -25,6 +26,7 @@ export default function AppHeader() {
   const [modal, setModal] = useState(false)
   const [modalMap, setModalMap] = useState(false)
   const [selectModal, setSelectModal] = useState(false)
+  const [newbuildingsModal, setNewbuildingsModal] = useState(false)
   const [building , setBuilding] = useState(null)
   const {buildings} = useBuildings()
   
@@ -70,9 +72,18 @@ export default function AppHeader() {
     )}
   />
 
-  <Button style={{marginLeft: '20px'}}>
+  <Button style={{marginLeft: '20px'}} onClick={() => setNewbuildingsModal(true)}>
     Новостройки
   </Button>
+  <Modal
+    closable={{ 'aria-label': 'Custom Close Button' }}
+    open={newbuildingsModal}
+    onOk={() => setNewbuildingsModal(false)}
+    onCancel={() => setNewbuildingsModal(false)} 
+    footer={null}
+  >
+    <NewBuildingPage  />
+  </Modal>
   
       <Button style={{marginLeft: 'auto'}} onClick={() => setModalMap(true)}>
         <EnvironmentOutlined />
