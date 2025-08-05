@@ -15,7 +15,8 @@ export default function AppContent() {
     const [squareMeter, setSquareMeter] = useState('');
     const [moneyNow, setMoneyNow] = useState('');
     const [moneyPerMonth, setMoneyPerMonth] = useState('');
-    const [yearsToBuy, setYearsToBuy] = useState(null)
+    const [yearsToBuy, setYearsToBuy] = useState(null);
+    const [isVisible, setIsVisible] = useState(false)
 
     // Предположим, что цена за квадратный метр фиксирована
     // Если площадь<40 то price = ...<50...
@@ -30,6 +31,8 @@ export default function AppContent() {
   const calculateYearsToBuy = () => {
     const totalPrice = squareMeter * pricePerSquareMeter;
     const remainingAmount = totalPrice - moneyNow;
+
+    setIsVisible(!isVisible)
 
     if (remainingAmount <= 0) {
       setYearsToBuy(0);
@@ -65,17 +68,20 @@ return (
         </Card>
         <Card style={{ width: 300, margin: 'auto' }} value={yearsToBuy}>
             <Button type="primary" onClick={calculateYearsToBuy}>Рассчитать</Button>
-            <p>Стоимость недвижимости</p>
-            <p>{squareMeter * pricePerSquareMeter} р</p>
-            Цель будет достигнута за
+            { isVisible && 
+            <div>
+            <p>Стоимость недвижимости</p> 
+            <p>{squareMeter * pricePerSquareMeter} р</p> 
+            <p>Цель будет достигнута за </p> 
             <p>{yearsToBuy} {yearsToBuy >= 10 && yearsToBuy<=20 ? "лет" : yearsToBuy === 1 ? "год" : yearsToBuy >= 2 && yearsToBuy<= 4 ? "года" : "лет"} </p>
+            </div> }
             {yearsToBuy !== null && (
         <div>
           {yearsToBuy === 0
             ? 'Вы уже можете купить квартиру!'
             : `Вам потребуется ${yearsToBuy} ${yearsToBuy >= 10 && yearsToBuy<=20 ? "лет" : yearsToBuy === 1 ? "год" : yearsToBuy >= 2 && yearsToBuy<= 4 ? "года" : "лет"} для покупки квартиры.`}
-        </div>
-      )}
+        </div> 
+      )} 
         </Card>
         
     </Layout.Content>   
