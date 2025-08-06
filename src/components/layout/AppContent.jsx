@@ -69,12 +69,13 @@ return (
         <Card style={{ width: 300, margin: 'auto' }} value={yearsToBuy}>
             <Button type="primary" onClick={calculateYearsToBuy}>Рассчитать</Button>
             { isVisible && 
-            <div>
-            <p>Стоимость недвижимости</p> 
-            <p>{squareMeter * pricePerSquareMeter} р</p> 
-            <p>Цель будет достигнута за </p> 
-            <p>{yearsToBuy} {yearsToBuy >= 10 && yearsToBuy<=20 ? "лет" : yearsToBuy === 1 ? "год" : yearsToBuy >= 2 && yearsToBuy<= 4 ? "года" : "лет"} </p>
-            </div> }
+              <div>
+                <p>Стоимость недвижимости</p> 
+                <p>{(squareMeter * pricePerSquareMeter).toFixed(0)} р</p> 
+                <p>Цель будет достигнута за </p> 
+                <p>{yearsToBuy} {yearsToBuy >= 10 && yearsToBuy<=20 ? "лет" : yearsToBuy === 1 ? "год" : yearsToBuy >= 2 && yearsToBuy<= 4 ? "года" : "лет"} </p>
+              </div> 
+            }
             {yearsToBuy !== null && (
         <div>
           {yearsToBuy === 0
