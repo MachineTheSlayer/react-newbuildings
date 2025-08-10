@@ -4,7 +4,7 @@ export function fakeFetchBuildings() {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(buildingsData)
-      }, 100)
+      }, 500)
     })
   }
 

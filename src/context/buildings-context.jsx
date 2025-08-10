@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { fakeFetchBuildings } from '../api'
+import { fakeFetchBuildings } from '../api';
 
 const BuildingsContext = createContext({
     assets: [],
@@ -34,9 +34,11 @@ export function BuildingsContextProvider({children}) {
         preload()
       }, [])
 
-    return <BuildingsContext.Provider value={{loading, buildings}}>
-        {children}
-    </BuildingsContext.Provider>
+    return ( 
+      <BuildingsContext.Provider value={{loading, buildings}}>
+          {children}
+      </BuildingsContext.Provider>
+    )
 }
 
 export default BuildingsContext

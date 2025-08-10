@@ -1,10 +1,14 @@
-
 import { useEffect, useState } from "react";
-import { fakeFetchBuildings } from "../../api"
-import styles from "./NewBuildingPage.module.css"
+import { Card } from 'antd';
+import { fakeFetchBuildings } from "../../api";
+import { useBuildings } from '../../context/buildings-context';
+
+import styles from "./NewBuildingPage.module.css";
 
 const NewBuildingPage = () => {
     const [newBuilding, setNewBuilding] = useState([]);
+//    const [building , setBuilding] = useState(null)
+    const {buildings} = useBuildings()
 
     useEffect(() => {
         async function preload() {
@@ -41,7 +45,17 @@ const NewBuildingPage = () => {
     return (
         <>
             <h2 className={styles.title}>Новостройки</h2>
-            {newBuilding}
+            <Card title="Card title" variant="borderless" style={{ width: 300 }}>
+                <ul className={styles.list__container}>
+                    {buildings.map(({ id, name, icon, websiteUrl }) => 
+                        <li className={styles.list__item} key={id}>
+                            <img className={styles.person__photo} src={icon} alt={name} />
+                            <p>{name}</p>
+                            <a href={websiteUrl}>Официальный  сайт</a>
+                        </li>
+                    )}
+                </ul>
+            </Card>
         </>
     )
 }

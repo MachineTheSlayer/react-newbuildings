@@ -57,10 +57,10 @@ export default function AppHeader() {
     onChange={handleSelect}
     onClick={() => setSelect((prev) => !prev)}
     value="press / to open"
-    options={buildings.map((buildings) => ({
-          label: buildings.name,
-          value: buildings.id,
-          icon: buildings.icon,
+    options={buildings.map((building) => ({
+          label: building.name,
+          value: building.id,
+          icon: building.icon,
     }))}
     optionRender={(option) => (
       <Space> 
@@ -70,7 +70,17 @@ export default function AppHeader() {
           atl={option.data.label} /> {' '}  {option.data.label}  
       </Space>
     )}
+    
   />
+     
+  <Modal
+        open={selectModal}
+        onCancel={() => setSelectModal(false)} 
+        footer={null}
+  >
+    <BuildingInfoModal building={building} />
+  </Modal> 
+   
 
   <Button style={{marginLeft: '20px'}} onClick={() => setNewbuildingsModal(true)}>
     Новостройки
@@ -82,7 +92,7 @@ export default function AppHeader() {
     onCancel={() => setNewbuildingsModal(false)} 
     footer={null}
   >
-    <NewBuildingPage  />
+    <NewBuildingPage />
   </Modal>
   
       <Button style={{marginLeft: 'auto'}} onClick={() => setModalMap(true)}>
