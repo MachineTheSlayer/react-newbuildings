@@ -45,17 +45,18 @@ const NewBuildingPage = () => {
     return (
         <>
             <h2 className={styles.title}>Новостройки</h2>
-            <Card title="Card title" variant="borderless" style={{ width: 300 }}>
+           
                 <ul className={styles.list__container}>
                     {buildings.map(({ id, name, icon, websiteUrl }) => 
                         <li className={styles.list__item} key={id}>
-                            <img className={styles.person__photo} src={icon} alt={name} />
-                            <p>{name}</p>
-                            <a href={websiteUrl}>Официальный  сайт</a>
+                            <p className={styles.item__name}>{name}</p>        
+                            <a className={styles.item__link} href={websiteUrl} target="_blank">
+                              <img className={styles.building__photo} src={icon} alt={name} />      
+                            </a>
                         </li>
                     )}
                 </ul>
-            </Card>
+           
         </>
     )
 }
