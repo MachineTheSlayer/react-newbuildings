@@ -11,7 +11,7 @@
     margin: 0;
     padding: 0;
     list-style-type: none;
-    background-color: black;
+    background-color: #0a1f44;
 }
 
 .list__item {
@@ -19,7 +19,7 @@
     margin: 20px;
     position: relative;
     border-radius: 3px;
-    background-color: whitesmoke;
+    background-color: #fff9f2;
 }
 
 .item__name {

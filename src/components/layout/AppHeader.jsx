@@ -15,7 +15,7 @@ const headerStyle = {
     color: '#fff',
     height: 60,
     lineHeight: '64px',
-    backgroundColor: '#4096ff',
+    backgroundColor: '#5784e6',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
