@@ -64,25 +64,26 @@ return (
         <Card style={{ width: 300, margin: 'auto',marginBottom:'1rem',marginTop:'1rem' }}>
             <Input style={{marginBottom:'10px'}} value={squareMeter} onChange={event => setSquareMeter(event.target.value) } placeholder="Квадратные метры" />
             <Input style={{marginBottom:'10px'}} value={moneyNow} onChange={event => setMoneyNow(event.target.value) } placeholder="Есть сейчас денег" />
-            <Input  value={moneyPerMonth} onChange={event => setMoneyPerMonth(event.target.value) } placeholder="Готов откладывать в месяц" />
+            <Input value={moneyPerMonth} onChange={event => setMoneyPerMonth(event.target.value) } placeholder="Готов откладывать в месяц" />
         </Card>
         <Card style={{ width: 300, margin: 'auto' }} value={yearsToBuy}>
             <Button type="primary" onClick={calculateYearsToBuy}>Рассчитать</Button>
-            { isVisible && 
+            { squareMeter && moneyNow && moneyPerMonth && isVisible && 
               <div>
                 <p>Стоимость недвижимости</p> 
                 <p>{(squareMeter * pricePerSquareMeter).toFixed(0)} р</p> 
                 <p>Цель будет достигнута за </p> 
                 <p>{yearsToBuy} {yearsToBuy >= 10 && yearsToBuy<=20 ? "лет" : yearsToBuy === 1 ? "год" : yearsToBuy >= 2 && yearsToBuy<= 4 ? "года" : "лет"} </p>
               </div> 
-            }
-            {yearsToBuy !== null && (
+            } 
+            
+  {/*           {yearsToBuy !== null && (
         <div>
           {yearsToBuy === 0
             ? 'Вы уже можете купить квартиру!'
             : `Вам потребуется ${yearsToBuy} ${yearsToBuy >= 10 && yearsToBuy<=20 ? "лет" : yearsToBuy === 1 ? "год" : yearsToBuy >= 2 && yearsToBuy<= 4 ? "года" : "лет"} для покупки квартиры.`}
         </div> 
-      )} 
+      )}  */}
         </Card>
         
     </Layout.Content>   
