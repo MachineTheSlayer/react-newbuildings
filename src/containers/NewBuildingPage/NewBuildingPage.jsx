@@ -51,7 +51,8 @@ const NewBuildingPage = () => {
                         <li className={styles.list__item} key={id}>
                             <p className={styles.item__name}>{name}</p>        
                             <a className={styles.item__link} href={websiteUrl} target="_blank">
-                              <img className={styles.building__photo} src={icon} alt={name} />      
+                              <img className={styles.building__photo} src={icon} alt={name} /> 
+                              <p className={styles.photo__overlay}>Подробнее</p>     
                             </a>
                         </li>
                     )}

@@ -35,8 +35,12 @@
 }
 
 .item__link:hover {
-    color: yellow;
     opacity: 0.5;
+}
+
+.item__link:hover .photo__overlay {
+    opacity: 1;
+    color: black;
 }
 
 .building__photo {
@@ -47,10 +51,19 @@
     object-position: top center;
 }
 
-.link__name {
-    position: absolute;
-    bottom:0;
+.building__photo:hover {
+    filter: brightness(0.5);
+    transform: scale(0.9);
 }
+
+.photo__overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0
+}
+
 
 
 
