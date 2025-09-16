@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useRef} from 'react';
 import { Layout, Input, Card, Button } from 'antd';
 import {ShowTrueYear} from '../../utils';
 
@@ -16,7 +16,44 @@ export default function AppContent() {
     const [moneyNow, setMoneyNow] = useState('');
     const [moneyPerMonth, setMoneyPerMonth] = useState('');
     const [yearsToBuy, setYearsToBuy] = useState(null);
-    const [isVisible, setIsVisible] = useState(false)
+    const [isVisible, setIsVisible] = useState(false);
+    const [hasErrorSquareMeter, setHasErrorSquareMeter] = useState(false);
+    const [hasErrorMoneyNow, setHasErrorMoneyNow] = useState(false);
+    const [hasErrorMoneyPerMonth, setHasErrorMoneyPerMonth] = useState(false);
+
+    const handleInputChangeSquareMeter = (e) => {
+      const inputValueSquareMeter = e.target.value;
+      setSquareMeter(inputValueSquareMeter);
+    
+      // Проверяем, является ли число отрицательным
+      if (inputValueSquareMeter !== '' && parseFloat(inputValueSquareMeter) <= 0 ) {
+        setHasErrorSquareMeter(true);
+      } else {
+        setHasErrorSquareMeter(false);
+      }
+  };
+    const handleInputChangeMoneyNow = (e) => {
+      const inputValueMoneyNow = e.target.value;
+      setMoneyNow(inputValueMoneyNow);
+      
+      // Проверяем, является ли число отрицательным
+      if (inputValueMoneyNow !== '' && parseFloat(inputValueMoneyNow) <= 0 ) {
+        setHasErrorMoneyNow(true);
+      } else {
+        setHasErrorMoneyNow(false);
+      }
+  };
+    const handleInputChangeMoneyPerMonth = (e) => {
+      const inputValueMoneyPerMonth = e.target.value;
+      setMoneyPerMonth(inputValueMoneyPerMonth);
+
+      // Проверяем, является ли число отрицательным
+      if (inputValueMoneyPerMonth !== '' && parseFloat(inputValueMoneyPerMonth) <= 0 ) {
+        setHasErrorMoneyPerMonth(true);
+      } else {
+        setHasErrorMoneyPerMonth(false);
+      }
+  };
 
     // Предположим, что цена за квадратный метр фиксирована
     // Если площадь<40 то price = ...<50...
@@ -62,13 +99,13 @@ return (
     <Layout.Content style={contentStyle}>
         <h2>Калькулятор покупки недвижимости</h2>
         <Card style={{ width: 300, margin: 'auto',marginBottom:'1rem',marginTop:'1rem' }}>
-            <Input style={{marginBottom:'10px'}} value={squareMeter} onChange={event => setSquareMeter(event.target.value) } placeholder="Квадратные метры" />
-            <Input style={{marginBottom:'10px'}} value={moneyNow} onChange={event => setMoneyNow(event.target.value) } placeholder="Есть сейчас денег" />
-            <Input value={moneyPerMonth} onChange={event => setMoneyPerMonth(event.target.value) } placeholder="Готов откладывать в месяц" />
+            <Input type="number" style={{marginBottom:'10px'}} value={squareMeter} onChange={handleInputChangeSquareMeter} className={hasErrorSquareMeter ? 'input-error' : ''} status={hasErrorSquareMeter ? 'error' : undefined} placeholder="Квадратные метры" /> 
+            <Input type='number' style={{marginBottom:'10px'}} value={moneyNow} onChange={handleInputChangeMoneyNow} className={hasErrorMoneyNow ? 'input-error' : ''} status={hasErrorMoneyNow ? 'error' : undefined} placeholder="Есть сейчас денег" />
+            <Input type='number' value={moneyPerMonth} onChange={handleInputChangeMoneyPerMonth} className={hasErrorMoneyPerMonth ? 'input-error' : ''} status={hasErrorMoneyPerMonth ? 'error' : undefined} placeholder="Готов откладывать в месяц" />
         </Card>
         <Card style={{ width: 300, margin: 'auto' }} value={yearsToBuy}>
             <Button type="primary" onClick={calculateYearsToBuy}>Рассчитать</Button>
-            { squareMeter && moneyNow && moneyPerMonth && isVisible && 
+            { squareMeter > 0 && moneyNow > 0 && moneyPerMonth > 0 && isVisible && 
               <div>
                 <p>Стоимость недвижимости</p> 
                 <p>{(squareMeter * pricePerSquareMeter).toFixed(0)} р</p> 
@@ -76,14 +113,6 @@ return (
                 <p>{yearsToBuy} {yearsToBuy >= 10 && yearsToBuy<=20 ? "лет" : yearsToBuy === 1 ? "год" : yearsToBuy >= 2 && yearsToBuy<= 4 ? "года" : "лет"} </p>
               </div> 
             } 
-            
-  {/*           {yearsToBuy !== null && (
-        <div>
-          {yearsToBuy === 0
-            ? 'Вы уже можете купить квартиру!'
-            : `Вам потребуется ${yearsToBuy} ${yearsToBuy >= 10 && yearsToBuy<=20 ? "лет" : yearsToBuy === 1 ? "год" : yearsToBuy >= 2 && yearsToBuy<= 4 ? "года" : "лет"} для покупки квартиры.`}
-        </div> 
-      )}  */}
         </Card>
         
     </Layout.Content>   
