@@ -12,24 +12,24 @@ const contentStyle = {
   }
 
 export default function AppContent() {
-    const [squareMeter, setSquareMeter] = useState('');
+    const [apartmentCost, setApartmentCost] = useState('');
     const [moneyNow, setMoneyNow] = useState('');
     const [moneyPerMonth, setMoneyPerMonth] = useState('');
     const [yearsToBuy, setYearsToBuy] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
-    const [hasErrorSquareMeter, setHasErrorSquareMeter] = useState(false);
+    const [hasErrorApartmentCost, setHasErrorApartmentCost] = useState(false);
     const [hasErrorMoneyNow, setHasErrorMoneyNow] = useState(false);
     const [hasErrorMoneyPerMonth, setHasErrorMoneyPerMonth] = useState(false);
 
-    const handleInputChangeSquareMeter = (e) => {
-      const inputValueSquareMeter = e.target.value;
-      setSquareMeter(inputValueSquareMeter);
+    const handleInputChangeApartmentCost = (e) => {
+      const inputValueApartmentCost = e.target.value;
+      setApartmentCost(inputValueApartmentCost);
     
       // Проверяем, является ли число отрицательным
-      if (inputValueSquareMeter !== '' && parseFloat(inputValueSquareMeter) <= 0 ) {
-        setHasErrorSquareMeter(true);
+      if (inputValueApartmentCost !== '' && parseFloat(inputValueApartmentCost) <= 0 ) {
+        setHasErrorApartmentCost(true);
       } else {
-        setHasErrorSquareMeter(false);
+        setHasErrorApartmentCost(false);
       }
   };
     const handleInputChangeMoneyNow = (e) => {
@@ -57,16 +57,16 @@ export default function AppContent() {
 
     // Предположим, что цена за квадратный метр фиксирована
     // Если площадь<40 то price = ...<50...
-  let pricePerSquareMeter = 115000; // например, 115000 рублей за квадратный метр
+  /* let pricePerSquareMeter = 115000; // например, 115000 рублей за квадратный метр
 
   if (squareMeter<40) {
     pricePerSquareMeter = 185000;
   } else if (squareMeter>40 && squareMeter<65) {
     pricePerSquareMeter = 146000;
-  } else pricePerSquareMeter = 135000;
+  } else pricePerSquareMeter = 135000; */
 
   const calculateYearsToBuy = () => {
-    const totalPrice = squareMeter * pricePerSquareMeter;
+    const totalPrice = apartmentCost;
     const remainingAmount = totalPrice - moneyNow;
 
     setIsVisible(!isVisible)
@@ -79,7 +79,7 @@ export default function AppContent() {
     }
   };
 
-  const getAgeString = (yearsToBuy) => {
+  /* const getAgeString = (yearsToBuy) => {
     let count = yearsToBuy % 100
     if (count >= 10 && count<= 20) {
       return "лет"
@@ -93,24 +93,29 @@ export default function AppContent() {
         return "лет"
       }
     }
-  }
+  } */
 
 return (
     <Layout.Content style={contentStyle}>
         <h2>Калькулятор покупки недвижимости</h2>
         <Card style={{ width: 300, margin: 'auto',marginBottom:'1rem',marginTop:'1rem' }}>
-            <Input type="number" style={{marginBottom:'10px'}} value={squareMeter} onChange={handleInputChangeSquareMeter} className={hasErrorSquareMeter ? 'input-error' : ''} status={hasErrorSquareMeter ? 'error' : undefined} placeholder="Квадратные метры" /> 
+            <Input type="number" style={{marginBottom:'10px'}} value={apartmentCost} onChange={handleInputChangeApartmentCost} className={hasErrorApartmentCost ? 'input-error' : ''} status={hasErrorApartmentCost ? 'error' : undefined} placeholder="Стоимость квартиры" /> 
             <Input type='number' style={{marginBottom:'10px'}} value={moneyNow} onChange={handleInputChangeMoneyNow} className={hasErrorMoneyNow ? 'input-error' : ''} status={hasErrorMoneyNow ? 'error' : undefined} placeholder="Есть сейчас денег" />
             <Input type='number' value={moneyPerMonth} onChange={handleInputChangeMoneyPerMonth} className={hasErrorMoneyPerMonth ? 'input-error' : ''} status={hasErrorMoneyPerMonth ? 'error' : undefined} placeholder="Готов откладывать в месяц" />
         </Card>
         <Card style={{ width: 300, margin: 'auto' }} value={yearsToBuy}>
             <Button type="primary" onClick={calculateYearsToBuy}>Рассчитать</Button>
-            { squareMeter > 0 && moneyNow > 0 && moneyPerMonth > 0 && isVisible && 
+            { apartmentCost > 0 && moneyNow > 0 && moneyPerMonth > 0 && isVisible && 
               <div>
                 <p>Стоимость недвижимости</p> 
-                <p>{(squareMeter * pricePerSquareMeter).toFixed(0)} р</p> 
-                <p>Цель будет достигнута за </p> 
-                <p>{yearsToBuy} {yearsToBuy >= 10 && yearsToBuy<=20 ? "лет" : yearsToBuy === 1 ? "год" : yearsToBuy >= 2 && yearsToBuy<= 4 ? "года" : "лет"} </p>
+                <p>{Number(apartmentCost).toFixed(0)} р</p> 
+                {yearsToBuy !== null && (
+                <div>
+                  {yearsToBuy === 0
+                    ? 'Вы уже можете купить квартиру!'
+                    : `Цель будет достигнута за ${yearsToBuy} ${yearsToBuy >= 10 && yearsToBuy<=20 ? "лет" : yearsToBuy === 1 ? "год" : yearsToBuy >= 2 && yearsToBuy<= 4 ? "года" : "лет"}`}
+                </div> 
+                )} 
               </div> 
             } 
         </Card>
