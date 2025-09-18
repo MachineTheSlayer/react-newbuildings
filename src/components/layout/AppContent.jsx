@@ -20,6 +20,7 @@ export default function AppContent() {
     const [hasErrorApartmentCost, setHasErrorApartmentCost] = useState(false);
     const [hasErrorMoneyNow, setHasErrorMoneyNow] = useState(false);
     const [hasErrorMoneyPerMonth, setHasErrorMoneyPerMonth] = useState(false);
+    const [isClicked, setIsClicked] = useState(false);
 
     const handleInputChangeApartmentCost = (e) => {
       const inputValueApartmentCost = e.target.value;
@@ -70,6 +71,10 @@ export default function AppContent() {
     const remainingAmount = totalPrice - moneyNow;
 
     setIsVisible(!isVisible)
+    
+    if (apartmentCost !== '' & moneyNow !== '' & moneyPerMonth !== '') {
+      setIsClicked(!isClicked);
+    };
 
     if (remainingAmount <= 0) {
       setYearsToBuy(0);
@@ -104,7 +109,7 @@ return (
             <Input type='number' value={moneyPerMonth} onChange={handleInputChangeMoneyPerMonth} className={hasErrorMoneyPerMonth ? 'input-error' : ''} status={hasErrorMoneyPerMonth ? 'error' : undefined} placeholder="Готов откладывать в месяц" />
         </Card>
         <Card style={{ width: 300, margin: 'auto' }} value={yearsToBuy}>
-            <Button type="primary" onClick={calculateYearsToBuy}>Рассчитать</Button>
+            <Button type="primary" onClick={calculateYearsToBuy}>{isClicked ? 'Очистить' : 'Рассчитать'}</Button>
             { apartmentCost > 0 && moneyNow > 0 && moneyPerMonth > 0 && isVisible && 
               <div>
                 <p>Стоимость недвижимости</p> 
@@ -112,8 +117,8 @@ return (
                 {yearsToBuy !== null && (
                 <div>
                   {yearsToBuy === 0
-                    ? 'Вы уже можете купить квартиру!'
-                    : `Цель будет достигнута за ${yearsToBuy} ${yearsToBuy >= 10 && yearsToBuy<=20 ? "лет" : yearsToBuy === 1 ? "год" : yearsToBuy >= 2 && yearsToBuy<= 4 ? "года" : "лет"}`}
+                    ? 'Вы уже можете купить квартиру!😎'
+                    : `Цель будет достигнута за ${yearsToBuy} ${yearsToBuy >= 10 && yearsToBuy<=20 ? "лет" : yearsToBuy === 1 ? "год" : yearsToBuy >= 2 && yearsToBuy<= 4 ? "года" : "лет"}😲`}
                 </div> 
                 )} 
               </div> 

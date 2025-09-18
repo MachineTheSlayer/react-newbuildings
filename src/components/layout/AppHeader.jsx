@@ -97,7 +97,7 @@ export default function AppHeader() {
   
       <Button style={{marginLeft: 'auto'}} onClick={() => setModalMap(true)}>
         <EnvironmentOutlined />
-        Map 
+        Карта 
       </Button>
       <Modal
           closable={{ 'aria-label': 'Custom Close Button' }}
@@ -113,7 +113,7 @@ export default function AppHeader() {
    
       <Button style={{marginLeft: '20px'}} onClick={() => setModal((prev) => !prev)}>
         
-        Login
+        Вход
       </Button>
       
       <Modal
