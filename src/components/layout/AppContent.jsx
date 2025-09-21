@@ -56,6 +56,17 @@ export default function AppContent() {
       }
   };
 
+  /* const isFormValid = Object.values(apartmentCost).every(value => 
+    value.trim() !== ''
+  ); */
+
+  /* const isFormValid = () => {
+    !apartmentCost.trim();
+    !moneyNow.trim();
+    !moneyPerMonth.trim();
+  }; */
+    
+
     // Предположим, что цена за квадратный метр фиксирована
     // Если площадь<40 то price = ...<50...
   /* let pricePerSquareMeter = 115000; // например, 115000 рублей за квадратный метр
@@ -109,7 +120,7 @@ return (
             <Input type='number' value={moneyPerMonth} onChange={handleInputChangeMoneyPerMonth} className={hasErrorMoneyPerMonth ? 'input-error' : ''} status={hasErrorMoneyPerMonth ? 'error' : undefined} placeholder="Готов откладывать в месяц" />
         </Card>
         <Card style={{ width: 300, margin: 'auto' }} value={yearsToBuy}>
-            <Button type="primary" onClick={calculateYearsToBuy}>{isClicked ? 'Очистить' : 'Рассчитать'}</Button>
+            <Button type="primary" disabled={!apartmentCost.trim() || !moneyNow.trim() || !moneyPerMonth.trim()} onClick={calculateYearsToBuy}>{isClicked ? 'Очистить' : 'Рассчитать'}</Button>
             { apartmentCost > 0 && moneyNow > 0 && moneyPerMonth > 0 && isVisible && 
               <div>
                 <p>Стоимость недвижимости</p> 
