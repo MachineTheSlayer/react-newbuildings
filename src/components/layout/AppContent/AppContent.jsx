@@ -1,6 +1,8 @@
 import React, {useState,useRef} from 'react';
 import { Layout, Input, Card, Button } from 'antd';
-import {ShowTrueYear} from '../../utils';
+import {ShowTrueYear} from '../../../utils';
+
+import styles from "./AppContent.module.css";
 
 const contentStyle = {
     //margin: 'auto',
@@ -78,20 +80,28 @@ export default function AppContent() {
   } else pricePerSquareMeter = 135000; */
 
   const calculateYearsToBuy = () => {
-    const totalPrice = apartmentCost;
-    const remainingAmount = totalPrice - moneyNow;
+    if (!isClicked) {
+      const totalPrice = apartmentCost;
+      const remainingAmount = totalPrice - moneyNow;
 
-    setIsVisible(!isVisible)
-    
-    if (apartmentCost !== '' & moneyNow !== '' & moneyPerMonth !== '') {
-      setIsClicked(!isClicked);
-    };
+      setIsVisible(!isVisible);
+      
+      if (apartmentCost !== '' & moneyNow !== '' & moneyPerMonth !== '') {
+        setIsClicked(!isClicked);
+      };
 
-    if (remainingAmount <= 0) {
-      setYearsToBuy(0);
+      if (remainingAmount <= 0) {
+        setYearsToBuy(0);
+      } else {
+        const monthsNeeded = Math.ceil(remainingAmount / moneyPerMonth);
+        setYearsToBuy(Math.ceil(monthsNeeded / 12));
+      } setIsClicked(true);
     } else {
-      const monthsNeeded = Math.ceil(remainingAmount / moneyPerMonth);
-      setYearsToBuy(Math.ceil(monthsNeeded / 12));
+        setApartmentCost('');
+        setMoneyNow('');
+        setMoneyPerMonth('');
+        setIsVisible(!isVisible);
+        setIsClicked(false);
     }
   };
 
@@ -120,7 +130,7 @@ return (
             <Input type='number' value={moneyPerMonth} onChange={handleInputChangeMoneyPerMonth} className={hasErrorMoneyPerMonth ? 'input-error' : ''} status={hasErrorMoneyPerMonth ? 'error' : undefined} placeholder="Готов откладывать в месяц" />
         </Card>
         <Card style={{ width: 300, margin: 'auto' }} value={yearsToBuy}>
-            <Button type="primary" disabled={!apartmentCost.trim() || apartmentCost<=0 || !moneyNow.trim() || moneyNow<=0 || !moneyPerMonth.trim() || moneyPerMonth<=0} onClick={calculateYearsToBuy}>{isClicked ? 'Очистить' : 'Рассчитать'}</Button>
+            <Button className={styles.button} type="primary" disabled={!apartmentCost.trim() || apartmentCost<=0 || !moneyNow.trim() || moneyNow<=0 || !moneyPerMonth.trim() || moneyPerMonth<=0} onClick={calculateYearsToBuy}>{isClicked ? 'Очистить' : 'Рассчитать'}</Button>
             { apartmentCost > 0 && moneyNow > 0 && moneyPerMonth > 0 && isVisible && 
               <div>
                 <p>Стоимость недвижимости</p> 

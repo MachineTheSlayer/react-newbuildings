@@ -111,9 +111,8 @@ export default function AppHeader() {
         </Modal>
 
    
-      <Button style={{marginLeft: '20px'}} onClick={() => setModal((prev) => !prev)}>
-        
-        Вход
+      <Button style={{marginLeft: '20px'}} onClick={() => setModal((prev) => !prev)}> 
+        Войти
       </Button>
       
       <Modal
