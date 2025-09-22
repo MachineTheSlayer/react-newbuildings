@@ -120,7 +120,7 @@ return (
             <Input type='number' value={moneyPerMonth} onChange={handleInputChangeMoneyPerMonth} className={hasErrorMoneyPerMonth ? 'input-error' : ''} status={hasErrorMoneyPerMonth ? 'error' : undefined} placeholder="Готов откладывать в месяц" />
         </Card>
         <Card style={{ width: 300, margin: 'auto' }} value={yearsToBuy}>
-            <Button type="primary" disabled={!apartmentCost.trim() || !moneyNow.trim() || !moneyPerMonth.trim()} onClick={calculateYearsToBuy}>{isClicked ? 'Очистить' : 'Рассчитать'}</Button>
+            <Button type="primary" disabled={!apartmentCost.trim() || apartmentCost<=0 || !moneyNow.trim() || moneyNow<=0 || !moneyPerMonth.trim() || moneyPerMonth<=0} onClick={calculateYearsToBuy}>{isClicked ? 'Очистить' : 'Рассчитать'}</Button>
             { apartmentCost > 0 && moneyNow > 0 && moneyPerMonth > 0 && isVisible && 
               <div>
                 <p>Стоимость недвижимости</p> 
