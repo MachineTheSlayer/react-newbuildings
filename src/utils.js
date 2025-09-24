@@ -1,18 +1,29 @@
-export function ShowTrueYear({yearsToBuy}) {
-    let count = yearsToBuy % 100
+export function showTrueYear(yearsToBuy) {
+    let count = Math.ceil(yearsToBuy) % 100;
     console.log(yearsToBuy)
-    if (count >= 10 && count<= 20) {
-      return "лет"
+    console.log(count)
+    if (count >= 11 && count <= 19) {
+      return "лет! 😲";
     } else {
-      count =  yearsToBuy % 10
+      count =  count % 10;
       if (count === 1) {
-        return "год"
+        return "год! 🤩";
       } else if (count >= 2 && count <= 4) {
-        return "года"
+        return "года! 😮";
       } else {
-        return "лет"
+        return "лет! 🤯";
       }
     }
 }
   
-  
+export function showTrueMonths(yearsToBuy) {
+    let count = Math.ceil(yearsToBuy*10) % 10;
+console.log(count)
+    if (count === 1) {
+      return "месяц! Вы близки к цели!🤑";
+    } else if (count >= 2 && count <= 4) {
+      return "месяца!🤠";
+    } else {
+      return "месяцев!😼";
+    }
+} 

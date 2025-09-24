@@ -3,3 +3,7 @@
 .button:disabled {
     opacity: 0.8;
 }
+
+.result {
+    margin-top: 15px;
+}

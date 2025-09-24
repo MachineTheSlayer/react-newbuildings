@@ -1,6 +1,7 @@
-import React, {useState,useRef} from 'react';
+import React, {useState} from 'react';
 import { Layout, Input, Card, Button } from 'antd';
-import {ShowTrueYear} from '../../../utils';
+import {showTrueYear} from '../../../utils';
+import {showTrueMonths} from '../../../utils'; 
 
 import styles from "./AppContent.module.css";
 
@@ -94,7 +95,9 @@ export default function AppContent() {
         setYearsToBuy(0);
       } else {
         const monthsNeeded = Math.ceil(remainingAmount / moneyPerMonth);
-        setYearsToBuy(Math.ceil(monthsNeeded / 12));
+       /*  if (monthsNeeded < 12) {
+          setYearsToBuy(Math.ceil(monthsNeeded));
+        } else */ setYearsToBuy(monthsNeeded / 12);
       } setIsClicked(true);
     } else {
         setApartmentCost('');
@@ -132,14 +135,12 @@ return (
         <Card style={{ width: 300, margin: 'auto' }} value={yearsToBuy}>
             <Button className={styles.button} type="primary" disabled={!apartmentCost.trim() || apartmentCost<=0 || !moneyNow.trim() || moneyNow<=0 || !moneyPerMonth.trim() || moneyPerMonth<=0} onClick={calculateYearsToBuy}>{isClicked ? 'Очистить' : 'Рассчитать'}</Button>
             { apartmentCost > 0 && moneyNow > 0 && moneyPerMonth > 0 && isVisible && 
-              <div>
-                <p>Стоимость недвижимости</p> 
-                <p>{Number(apartmentCost).toFixed(0)} р</p> 
+              <div className={styles.result}>
                 {yearsToBuy !== null && (
                 <div>
                   {yearsToBuy === 0
                     ? 'Вы уже можете купить квартиру!😎'
-                    : `Цель будет достигнута за ${yearsToBuy} ${yearsToBuy >= 10 && yearsToBuy<=20 ? "лет" : yearsToBuy === 1 ? "год" : yearsToBuy >= 2 && yearsToBuy<= 4 ? "года" : "лет"}😲`}
+                    : `Цель будет достигнута за ${yearsToBuy < 1 && yearsToBuy > 0 ? yearsToBuy * 12 : Math.ceil(yearsToBuy) } ${yearsToBuy < 1 && yearsToBuy > 0 ? showTrueMonths(yearsToBuy) : showTrueYear(yearsToBuy)}`}
                 </div> 
                 )} 
               </div> 
