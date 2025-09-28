@@ -1,7 +1,6 @@
 export function showTrueYear(yearsToBuy) {
     let count = Math.ceil(yearsToBuy) % 100;
-    console.log(yearsToBuy)
-    console.log(count)
+    
     if (count >= 11 && count <= 19) {
       return "лет! 😲";
     } else {
@@ -18,7 +17,7 @@ export function showTrueYear(yearsToBuy) {
   
 export function showTrueMonths(yearsToBuy) {
     let count = Math.ceil(yearsToBuy*10) % 10;
-console.log(count)
+
     if (count === 1) {
       return "месяц! Вы близки к цели!🤑";
     } else if (count >= 2 && count <= 4) {

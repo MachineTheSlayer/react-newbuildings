@@ -1,4 +1,5 @@
 import React from 'react';
+import { Typography } from 'antd';
 import { YMaps, Map, Placemark, FullscreenControl, ZoomControl } from '@iminside/react-yandex-maps';
 
 import config from './config.json';

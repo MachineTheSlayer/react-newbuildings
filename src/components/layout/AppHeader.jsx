@@ -1,11 +1,8 @@
-import React, { useContext,useLayoutEffect } from 'react';
-import { useBuildings } from '../../context/buildings-context';
-import { Layout, Select, Space, Modal, Form, Input, Checkbox  } from 'antd';
+import { Layout, Space, Modal, Form, Input, Checkbox, Button } from 'antd';
 import MapYandex from '../configmap/MapYandex';
-import { EnvironmentOutlined}  from '@ant-design/icons';
-import{ Button } from "antd";
-import { useEffect, useState } from 'react';
-import BuildingInfoModal from '../BuildingInfoModal'
+import { EnvironmentOutlined, HomeOutlined, LoginOutlined, QuestionCircleOutlined }  from '@ant-design/icons';
+import { useState } from 'react';
+import AboutInfoModal from '../AboutInfoModal';
 import NewBuildingPage from "../../containers/NewBuildingPage/NewBuildingPage";
 
 
@@ -22,67 +19,32 @@ const headerStyle = {
   };
 
 export default function AppHeader() {
-  const [select, setSelect] = useState(false)
+  const [about, setAbout] = useState(false)
   const [modal, setModal] = useState(false)
   const [modalMap, setModalMap] = useState(false)
-  const [selectModal, setSelectModal] = useState(false)
   const [newbuildingsModal, setNewbuildingsModal] = useState(false)
-  const [building , setBuilding] = useState(null)
-  const {buildings} = useBuildings()
-  
-  useEffect(() => {
-    const keypress = (event) => {
-      if (event.key === '/') {
-        setSelect((prev) => !prev)
-      }
-    }
-    document.addEventListener('keypress', keypress)
-    return () => document.removeEventListener('keypress', keypress)
-  }, [])
 
-  function handleSelect(value) {
-      console.log(value)
-      setBuilding(buildings.find((building) => building.id === value))
-      setSelectModal(true)
-    }
-
-    return (
-      <>
+return (
+  <>
     <Layout.Header style={headerStyle}>
-      <Select
-    style={{
-      width: 250
-    }}
-    open={select}
-    onChange={handleSelect}
-    onClick={() => setSelect((prev) => !prev)}
-    value="press / to open"
-    options={buildings.map((building) => ({
-          label: building.name,
-          value: building.id,
-          icon: building.icon,
-    }))}
-    optionRender={(option) => (
-      <Space> 
-        <img
-          style={{ width: 60 }}
-          src={option.data.icon}
-          atl={option.data.label} /> {' '}  {option.data.label}  
-      </Space>
-    )}
-    
-  />
+      <Button  onClick={() => setAbout(true)}>
+        <QuestionCircleOutlined />
+        О проекте 
+      </Button>
      
-  <Modal
-        open={selectModal}
-        onCancel={() => setSelectModal(false)} 
-        footer={null}
-  >
-    <BuildingInfoModal building={building} />
-  </Modal> 
+    <Modal
+          open={about}
+          onCancel={() => setAbout(false)} 
+          footer={null}
+    >
+      <AboutInfoModal />
+    </Modal> 
    
 
   <Button style={{marginLeft: '20px'}} onClick={() => setNewbuildingsModal(true)}>
+    <Space>
+      <HomeOutlined />
+    </Space>
     Новостройки
   </Button>
   <Modal
@@ -111,7 +73,8 @@ export default function AppHeader() {
         </Modal>
 
    
-      <Button style={{marginLeft: '20px'}} onClick={() => setModal((prev) => !prev)}> 
+      <Button style={{marginLeft: '20px'}} onClick={() => setModal((prev) => !prev)}>
+        <LoginOutlined /> 
         Войти
       </Button>
       
