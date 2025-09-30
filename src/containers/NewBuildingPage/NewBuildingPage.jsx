@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Card } from 'antd';
 import { fakeFetchBuildings } from "../../api";
 import { useBuildings } from '../../context/buildings-context';
 
@@ -7,7 +6,6 @@ import styles from "./NewBuildingPage.module.css";
 
 const NewBuildingPage = () => {
     const [newBuilding, setNewBuilding] = useState([]);
-//    const [building , setBuilding] = useState(null)
     const {buildings} = useBuildings()
 
     useEffect(() => {

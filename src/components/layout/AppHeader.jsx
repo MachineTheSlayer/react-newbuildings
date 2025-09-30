@@ -2,7 +2,7 @@ import { Layout, Space, Modal, Form, Input, Checkbox, Button } from 'antd';
 import MapYandex from '../configmap/MapYandex';
 import { EnvironmentOutlined, HomeOutlined, LoginOutlined, QuestionCircleOutlined }  from '@ant-design/icons';
 import { useState } from 'react';
-import AboutInfoModal from '../AboutInfoModal';
+import AboutInfoModal from '../../containers/AboutInfoModal/AboutInfoModal';
 import NewBuildingPage from "../../containers/NewBuildingPage/NewBuildingPage";
 
 
