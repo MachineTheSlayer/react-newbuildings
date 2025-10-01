@@ -1,10 +1,11 @@
-import { Layout, Space, Modal, Form, Input, Checkbox, Button } from 'antd';
-import MapYandex from '../configmap/MapYandex';
-import { EnvironmentOutlined, HomeOutlined, LoginOutlined, QuestionCircleOutlined }  from '@ant-design/icons';
 import { useState } from 'react';
-import AboutInfoModal from '../../containers/AboutInfoModal/AboutInfoModal';
-import NewBuildingPage from "../../containers/NewBuildingPage/NewBuildingPage";
+import { Layout, Space, Modal, Form, Input, Checkbox, Button } from 'antd';
+import { EnvironmentOutlined, HomeOutlined, LoginOutlined, QuestionCircleOutlined }  from '@ant-design/icons';
+import MapYandex from '../../configmap/MapYandex';
+import AboutInfoModal from '../../../containers/AboutInfoModal/AboutInfoModal';
+import NewBuildingPage from "../../../containers/NewBuildingPage/NewBuildingPage";
 
+import styles from "../AppHeader/AppHeader.module.css";
 
 const headerStyle = {
     width: '100%',
@@ -26,7 +27,7 @@ export default function AppHeader() {
 
 return (
   <>
-    <Layout.Header style={headerStyle}>
+    <Layout.Header className={styles.container}>
       <Button  onClick={() => setAbout(true)}>
         <QuestionCircleOutlined />
         О проекте 

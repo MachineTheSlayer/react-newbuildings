@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { fakeFetchBuildings } from '../api';
+import { fakeFetchBuildings } from "../utils/api";
 
 const BuildingsContext = createContext({
     assets: [],

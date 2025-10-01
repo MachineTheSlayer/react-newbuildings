@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fakeFetchBuildings } from "../../api";
+import { fakeFetchBuildings } from "./../../utils/api";
 import { useBuildings } from '../../context/buildings-context';
 
 import styles from "./NewBuildingPage.module.css";

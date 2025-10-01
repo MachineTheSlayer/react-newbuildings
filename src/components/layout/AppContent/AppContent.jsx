@@ -1,18 +1,9 @@
 import React, {useState} from 'react';
 import { Layout, Input, Card, Button } from 'antd';
-import {showTrueYear} from '../../../utils';
-import {showTrueMonths} from '../../../utils'; 
+import {showTrueYear} from '../../../utils/utils';
+import {showTrueMonths} from '../../../utils/utils'; 
 
 import styles from "./AppContent.module.css";
-
-const contentStyle = {
-    //margin: 'auto',
-    textAlign: 'center',
-    minHeight: 'calc(100vh - 60px)',
-    color: '#fff',
-    backgroundColor: '#191265',
-    padding: '1rem',
-  }
 
 export default function AppContent() {
     const [apartmentCost, setApartmentCost] = useState('');
@@ -125,7 +116,7 @@ export default function AppContent() {
   } */
 
 return (
-    <Layout.Content style={contentStyle}>
+    <Layout.Content className={styles.container}>
         <h2>Калькулятор покупки недвижимости</h2>
         <Card style={{ width: 300, margin: 'auto',marginBottom:'1rem',marginTop:'1rem' }}>
             <Input type="number" style={{marginBottom:'10px'}} value={apartmentCost} onChange={handleInputChangeApartmentCost} className={hasErrorApartmentCost ? 'input-error' : ''} status={hasErrorApartmentCost ? 'error' : undefined} placeholder="Стоимость квартиры" /> 
@@ -146,7 +137,6 @@ return (
               </div> 
             } 
         </Card>
-        
     </Layout.Content>   
 
     
